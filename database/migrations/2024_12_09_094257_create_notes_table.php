@@ -16,9 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
-            $table->string('is_shared');
-            $table->string('is_archived');
-            $table->string('is_pinned');
+            $table->string('content');
+            $table->boolean('is_shared')->default(0);
+            $table->boolean('is_archived')->default(0);
+            $table->boolean('is_pinned')->default(0);
             $table->timestamps();
         });
     }

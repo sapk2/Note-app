@@ -13,5 +13,10 @@ class Note_shared extends Model
     'user_id',
     'acess_type'
    ];
+   /*public function note()
+{
+    return $this->belongsTo(Note::class, 'note_id');
+}*/
+
 
 }

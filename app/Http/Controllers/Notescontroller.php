@@ -2,63 +2,89 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Note;
+use App\Models\notes;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class Notescontroller extends Controller
+class notescontroller extends Controller
 {
-   public function index(){
-    $notes=Note::all();
-    return view('note.index',compact('notes'));
-   }
-   public function create(){
-    return view('note.create');
-   }
-   public function store(Request $request){
-    $data=$request->validate([
-        'user_id'=>'required',
-        'text'=>'required',
-        'content'=>'required',
-        'is_shared'=>'required',
-        'is_archived'=>'required',
-        'is_pinned'=>'required',
-        'is_viewed'=>'required'
-    ]);
-    $data =Note::create([
-        'user_id'=>$data['user_id'],
-        'text'=>$data['text'],
-        'content'=>$data['content'],
-        'is_shared'=>$data['is_shared'],
-        'is_archived'=>$data['is_archived'],
-        'is_pinned'=>$data['is_pinned'],
-        'is_viewed'=>$data['is_viewed'],
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $notes = notes::all();
+        return view('note.index', compact('notes'));
+    }
 
-    ]);
-    return redirect()->with('sucessfully created!!');
-   }
-   public function edit(Request $request ,$id){
-    $notes= Note::findorfail($id);
-    return view('note.edit',compact('notes'));
-   }
-   public function update(Request $request, $id){
-    $data=$request->validate([
-        'user_id'=>'required',
-        'title'=>'required',
-        'content'=>'required',
-        'is_shared'=>'required',
-        'is_archived'=>'required',
-        'is_pinned'=>'required',
-        'is_viewed'=>'required'
-    ]);
-    $notes=Note::findorfail($id);
-    $notes->update($data);
-    return redirect()->with('sucess');
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $users = User::all();
+        $notes= notes::all();
+         return view('note.create', compact('users','notes'));
+    }
 
-   }
-   public function delete($id){
-    $notes=Note::find($id);
-    $notes->delete();
-    return redirect()->with('success', 'Note successfully deleted!');
-   }
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'user_id' => 'required',
+            'title' => 'required',
+            'content' => 'required',
+            'is_shared' => 'boolean',
+            'is_archived' => 'boolean',
+            'is_pinned' => 'boolean',
+        ]);
+        $data = notes::create($data);
+        return redirect()->route('note.index')->with('sucessfully created!!');
+    }
+
+    
+    public function edit(string $id)
+    {
+        $users=User::all();
+        $notes = notes::findorfail($id);
+        return view('note.edit', compact('notes','users'));
+    }
+
+  
+    public function update(Request $request, string $id)
+    {
+        $data = $request->validate([
+            'user_id' => 'required',
+            'title' => 'required',
+            'content' => 'required',
+            'is_shared' => 'boolean',
+            'is_archived' => 'boolean',
+            'is_pinned' => 'boolean',
+            
+        ]);
+       
+        
+        $notes = notes::findorfail($id);
+        $notes->update($data);
+
+        return redirect()->route('note.index')->with('sucess');
+    }
+    
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function delete(string $id)
+
+    {
+        $notes = notes::find($id);
+        if (!$notes) {
+            // If not found, redirect with an error message
+            return redirect()->route('note.index')->with('error', 'Note not found!');
+        }
+        $notes->delete();
+        return redirect()->route('note.index')->with('success', 'Note successfully deleted!');
+    }
 }
-

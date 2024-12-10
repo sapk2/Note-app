@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('note_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('acess_type');
+            $table->enum('access_type', ['view', 'edit'])->default('view');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('note_id')->references('id')->on('notes')->onDelete('cascade');
             $table->timestamps();

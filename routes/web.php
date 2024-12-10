@@ -3,6 +3,7 @@
 use App\Http\Controllers\Notescontroller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\shared_Notecontroller;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,12 +12,20 @@ Route::get('/', function () {
 
 
 // note
-Route::get('/note',[Notescontroller::class,'index'])->name('notes.index');
+Route::get('/note',[Notescontroller::class,'index'])->name('note.index');
 Route::get('/note-create',[Notescontroller::class,'create'])->name('note.create');
 Route::post('/note/store',[Notescontroller::class,'store'])->name('note.store');
 Route::get('note/{id}/edit',[Notescontroller::class,'edit'])->name('note.edit');
 Route::post('note/{id}/update',[Notescontroller::class,'update'])->name('note.update');
 Route::delete('note/{id}/delete',[Notescontroller::class,'delete'])->name('note.delete');
+
+//user-management
+Route::get('/user',[UserController::class,'index'])->name('users.index');
+//Route::get('user-create',[UserController::class,'create'])->name('users.create');
+Route::post('user/store',[UserController::class,'store'])->name('users.store');
+Route::get('user/{id}/edit',[UserController::class,'edit'])->name('users.edit');
+Route::post('user/{id}/update',[UserController::class,'update'])->name('users.update');
+Route::get('user/{id}/delete',[UserController::class,'delete'])->name('users.delete');
 
 
 //shared note 
