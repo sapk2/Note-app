@@ -6,7 +6,7 @@
             <hr class="border-t-3 border-red-500 mt-2">
             <div class="my-5   text-left px-2">
                 <div class=" mb-4">
-                    <form action="{{route('users.update',$user->id)}}" method="Post" enctype="multipart/form-data">
+                    <form action="{{route('admin.users.update',$user->id)}}" method="Post" enctype="multipart/form-data">
                         @csrf
                         
                         <div class="mb-5">
@@ -48,7 +48,7 @@
                        
                         <div class="flex justify-center">
                             <input type="submit" class="bg-blue-600 text-white px-4 mx-2 py-2 rounded">
-                            <a href="{{ route('users.index') }}" class="bg-red-600 text-white px-10 mx-2 py-2 rounded">Exit</a>
+                            <a href="{{ route('admin.users.index') }}" class="bg-red-600 text-white px-10 mx-2 py-2 rounded">Exit</a>
                         </div>
 
                     </form>

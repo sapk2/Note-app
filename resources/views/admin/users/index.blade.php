@@ -24,8 +24,8 @@
                             <td class="border border-gray-600 p-2">{{$user->email}}</td>
                             <td class="border border-gray-600 p-2"> {{$user->role ?? 'guest'}} </td>
                             <td class="border border-gray-600 p-2">
-                                <a href="{{route('users.edit',$user->id)}}" class="bg-green-500 text-white px-4 py-2 rounded-lg">Edit</a>
-                                <a href="{{route('users.delete',$user->id)}}" onclick="return confirm('Are you sure to Delete?')" class="bg-red-600 text-white px-4 py-2 rounded-lg">Delete</a>
+                                <a href="{{route('admin.users.edit',$user->id)}}" class="bg-green-500 text-white px-4 py-2 rounded-lg">Edit</a>
+                                <a href="{{route('admin.users.delete',$user->id)}}" onclick="return confirm('Are you sure to Delete?')" class="bg-red-600 text-white px-4 py-2 rounded-lg">Delete</a>
                             </td>
                         </tr>
                         @endforeach

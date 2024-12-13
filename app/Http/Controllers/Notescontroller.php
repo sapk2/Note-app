@@ -14,7 +14,7 @@ class notescontroller extends Controller
     public function index()
     {
         $notes = notes::all();
-        return view('note.index', compact('notes'));
+        return view('admin.note.index', compact('notes'));
     }
 
     /**
@@ -24,7 +24,7 @@ class notescontroller extends Controller
     {
         $users = User::all();
         $notes= notes::all();
-         return view('note.create', compact('users','notes'));
+         return view('admin.note.create', compact('users','notes'));
     }
 
     /**
@@ -41,7 +41,7 @@ class notescontroller extends Controller
             'is_pinned' => 'boolean',
         ]);
         $data = notes::create($data);
-        return redirect()->route('note.index')->with('sucessfully created!!');
+        return redirect()->route('admin.note.index')->with('sucessfully created!!');
     }
 
     
@@ -49,7 +49,7 @@ class notescontroller extends Controller
     {
         $users=User::all();
         $notes = notes::findorfail($id);
-        return view('note.edit', compact('notes','users'));
+        return view('admin.note.edit', compact('notes','users'));
     }
 
   
@@ -69,7 +69,7 @@ class notescontroller extends Controller
         $notes = notes::findorfail($id);
         $notes->update($data);
 
-        return redirect()->route('note.index')->with('sucess');
+        return redirect()->route('admin.note.index')->with('sucess');
     }
     
 
@@ -82,9 +82,9 @@ class notescontroller extends Controller
         $notes = notes::find($id);
         if (!$notes) {
             // If not found, redirect with an error message
-            return redirect()->route('note.index')->with('error', 'Note not found!');
+            return redirect()->route('admin.note.index')->with('error', 'Note not found!');
         }
         $notes->delete();
-        return redirect()->route('note.index')->with('success', 'Note successfully deleted!');
+        return redirect()->route('admin.note.index')->with('success', 'Note successfully deleted!');
     }
 }

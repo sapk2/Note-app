@@ -28,7 +28,7 @@
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         <!-- Navigation -->
-        <nav class="bg-gray-800 text-white">
+        <nav class="bg-gray-800 text-white hover:bg-red-300 hover:shadow-md hover:border-blue-600 transition-all duration-300 ease-in-out">
             <div class="container mx-auto flex justify-between items-center py-4 px-6">
                 <!-- Logo -->
                 <div class="flex items-center space-x-2 text-lg font-bold">
@@ -38,10 +38,11 @@
 
                 <!-- Navigation Links (Desktop) -->
                 <ul class="hidden md:flex items-center space-x-6">
-                  <li><a href="{{route('admin.dashboard')}}" class="hover:text-blue-300">Dashboard</a></li>
-                  <li><a href="{{route('admin.note.index')}}" class="hover:text-blue-300">Notes</a></li>
-                  <li><a href="{{route('admin.shared-notes.index')}}" class="hover:text-blue-300">Shared Notes</a></li>
-                  <li><a href="{{route('admin.users.index')}}" class="hover:text-blue-300">Users</a></li>
+                    <li class="nav-item"><a href="" class="hover:text-blue-300">Dashboard</a></li>
+                    <li class="nav-item"><a href="" class="hover:text-blue-300">My Notes</a></li>
+                    <li class="nav-item"><a href="" class="hover:text-blue-300">Shared Notes</a></li>
+                    <li class="nav-item"><a href="" class="hover:text-blue-300">Archived Notes</a></li>
+                    <li class="nav-item"><a href="" class="hover:text-blue-300">Settings</a></li>    
                   <li>
                       <form action="{{ route('logout') }}" method="POST" class="inline">
                           @csrf
@@ -70,10 +71,12 @@
                 class="hidden md:hidden space-y-4 py-4 px-6 bg-gray-700"
             >
                 <ul>
-                    <li><a href="{{route('admin.dashboard')}}" class="hover:text-blue-300">Dashboard</a></li>
-                  <li><a href="{{route('admin.note.index')}}" class="hover:text-blue-300">Notes</a></li>
-                  <li><a href="{{route('admin.shared-notes.index')}}" class="hover:text-blue-300">Shared Notes</a></li>
-                  <li><a href="{{route('admin.users.index')}}" class="hover:text-blue-300">Users</a></li>
+                    <li class="nav-item"><a href="" class="hover:text-blue-300">Dashboard</a></li>
+                    <li class="nav-item"><a href="" class="hover:text-blue-300">My Notes</a></li>
+                    <li class="nav-item"><a href="" class="hover:text-blue-300">Shared Notes</a></li>
+                    <li class="nav-item"><a href="" class="hover:text-blue-300">Archived Notes</a></li>
+                    <li class="nav-item"><a href="" class="hover:text-blue-300">Settings</a></li>
+    
                 </ul>
                 <!-- Logout Button -->
                 <form action="{{ route('logout') }}" method="POST" class="block">
@@ -87,7 +90,7 @@
 
         <!-- Page Content -->
         <main class="container mx-auto py-8 px-6">
-            @yield('content')
+            @yield('user-content')
         </main>
     </div>
 

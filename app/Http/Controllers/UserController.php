@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
-        return view('users.index', compact('user'));
+        return view('admin.users.index', compact('user'));
     }
 
     /* public function create()
@@ -27,7 +27,7 @@ class UserController extends Controller
             'email' => 'required',
         ]);
         user::create($request->all());
-        return redirect()->route('users.index')->with('sucessfully stored!!');
+        return redirect()->route('admin.users.index')->with('sucessfully stored!!');
     }
 
     public function edit(string $id)
@@ -48,7 +48,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
         ]);
-        return redirect()->route('users.index')->with('sucsessfully updated');
+        return redirect()->route('admin.users.index')->with('sucsessfully updated');
     }
 
     public function delete(string $id)

@@ -4,7 +4,7 @@
         <div class="max-w-md w-full bg-gray-600 p-4 rounded-lg shadow-lg">
             <h1 class="text-white text-2xl font-semibold">Edit</h1>
             <hr class="border-t-2 border-red-500 mt-2">
-            <form action="{{route('note.update',$notes->id)}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.note.update',$notes->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
                     <label for="user_id" class="text-sm text-gray-500 dark:text-gray-400">User</label>
@@ -76,7 +76,7 @@
                 <!-- Form Actions -->
                 <div class="flex justify-center">                 
                     <input type="submit" class="bg-blue-600 text-white px-4 mx-2 py-2 rounded hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">                 
-                    <a href="{{ route('note.index') }}" class="bg-red-600 text-white px-10 mx-2 py-2 rounded">Exit</a>
+                    <a href="{{ route('admin.note.index') }}" class="bg-red-600 text-white px-10 mx-2 py-2 rounded">Exit</a>
                 </div>
 
             </form>

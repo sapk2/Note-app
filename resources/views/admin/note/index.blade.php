@@ -7,7 +7,7 @@
             <hr class="border-t-2 border-red-500 mt-2">
             
             <div class="my-5 text-right px-2">
-                <a href="{{ route('note.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-600">Add Note</a>
+                <a href="{{ route('admin.note.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-600">Add Note</a>
             </div>
             
             <div class="w-full text-white bg-gray-400 mt-4 ml-2 rounded-xl shadow-md">
@@ -29,8 +29,8 @@
                             <td class="border border-gray-600 p-2">{{ $item->title }}</td>
                             <td class="border border-gray-600 p-2">{{ $item->content }}</td>
                             <td class="border border-gray-600 p-2">
-                                <a href="{{ route('note.edit', $item->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition duration-600">Edit</a>
-                                <form action="{{ route('note.delete', $item->id) }}" method="POST" style="display:inline;" onclick="return confirm('Are you sure to Delete?')">
+                                <a href="{{ route('admin.note.edit', $item->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition duration-600">Edit</a>
+                                <form action="{{ route('admin.note.delete', $item->id) }}" method="POST" style="display:inline;" onclick="return confirm('Are you sure to Delete?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition duration-600" >Delete</button>

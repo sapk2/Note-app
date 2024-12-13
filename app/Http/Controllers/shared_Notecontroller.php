@@ -14,7 +14,7 @@ class shared_Notecontroller extends Controller
     {
         $user=User::all();
         $sharenote = notes::where('is_shared',1)->get();
-        return view('shared-notes.index', compact('sharenote','user'));
+        return view('admin.shared-notes.index', compact('sharenote','user'));
     }
     public function store(Request $request)
     {
