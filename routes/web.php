@@ -5,6 +5,7 @@ use App\Http\Controllers\Notescontroller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\shared_Notecontroller;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPanelController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -46,8 +47,15 @@ Route::delete('/shared-notes/{id}', [shared_Notecontroller::class, 'destroy'])->
 
 /******user dashboard ****/
 Route::middleware('is_user')->group(function(){
-    Route::get('user/dashboard', [dashboardcontroller::class, 'userdashboard'])->name('users.dashboard');
+    Route::get('user/dashboard', [UserPanelController::class, 'mynote'])->name('users.dashboard');
+    Route::get('/notes/create', [UserPanelController::class, 'mynotecreate'])->name('users.mynotes');
+    Route::post('/notes/store', [UserPanelController::class, 'mystore'])->name('users.mystore');
+    Route::get('/notes/edit/{id}', [UserPanelController::class, 'mynoteedit'])->name('users.noteedit');
+    Route::put('/notes/update/{id}', [UserPanelController::class, 'mynoteupdate'])->name('users.notesupdate');
+    Route::delete('/notes/delete/{id}', [UserPanelController::class, 'mynotedelete'])->name('users.notesdelete');
+    Route::get('/notes/{id}/show', [UserPanelController::class, 'noteshow'])->name('users.noteshow');
 
+    
 });
 
 require __DIR__.'/auth.php';

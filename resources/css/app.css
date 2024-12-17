@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.ql-picker-label {
+    color: white!important;
+}
+
+.ql-toolbar .ql-stroke {
+    stroke: white !important;
+}
+
+.ql-toolbar .ql-fill {
+    fill: white !important;
+}
