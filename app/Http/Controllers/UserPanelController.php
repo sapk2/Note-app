@@ -12,7 +12,8 @@ class UserPanelController extends Controller
     public function mynote()
     {
         #$note=notes::all();
-        $note = Notes::where('user_id', Auth::id())->get();
+        $note = Notes::orderBy('is_pinned', 'desc')->where('user_id', Auth::id())->get();
+
         return view('users.dashboard', compact('note'));
     }
 
@@ -23,29 +24,31 @@ class UserPanelController extends Controller
 
     public function mystore(Request $request)
     {
+
         $data = $request->validate([
+
             'title' => 'required',
             'content' => 'required',
             'is_shared' => 'boolean',
             'is_archived' => 'boolean',
             'is_pinned' => 'boolean',
         ]);
-
+        $data['content'] = strip_tags($request->input('content'));
         $data['user_id'] = Auth::id();
         Notes::create($data);
 
         return redirect()->route('users.dashboard')->with('success', 'Note created successfully!');
     }
-    public function noteshow($id){
+    public function noteshow($id)
+    {
         $note = Notes::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
 
         return view('users.noteshow', compact('note'));
-
     }
     public function mynoteedit($id)
     {
         $note = Notes::findOrFail($id);
-        
+
         return view('users.noteedit', compact('note'));
     }
 
@@ -60,7 +63,7 @@ class UserPanelController extends Controller
             'is_archived' => 'boolean',
             'is_pinned' => 'boolean',
         ]);
-
+        $data['content'] = strip_tags($request->input('content'));
         $note->update($data);
 
         return redirect()->route('users.dashboard')->with('success', 'Note updated successfully!');
@@ -74,5 +77,3 @@ class UserPanelController extends Controller
         return redirect()->route('users.dashboard')->with('success', 'Note deleted successfully!');
     }
 }
-
-

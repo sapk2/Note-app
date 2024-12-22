@@ -6,7 +6,7 @@
             <h1 class="text-white text-2xl font-semibold">Create Note</h1>
             <hr class="border-t-2 border-red-500 mt-2">
 
-            <form action="{{ route('note.store') }}" method="POST">
+            <form action="{{ route('admin.note.store') }}" method="POST">
                 @csrf
 
                 <!-- User Selection -->
@@ -71,7 +71,8 @@
 
                 <!-- Form Actions -->
                 <div class="flex justify-center">                 
-                    <input type="submit" class="bg-blue-600 text-white px-4 mx-2 py-2 rounded hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">                 <a href="{{ route('note.index') }}" class="bg-red-600 text-white px-10 mx-2 py-2 rounded">Exit</a>
+                    <input type="submit" class="bg-blue-600 text-white px-4 mx-2 py-2 rounded hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">                
+                     <a href="{{ route('admin.note.index') }}" class="bg-red-600 text-white px-10 mx-2 py-2 rounded">Exit</a>
                 </div>         
             </form> 
         </div>

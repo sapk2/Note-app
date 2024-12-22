@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\notes;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class notescontroller extends Controller
 {
@@ -13,8 +14,9 @@ class notescontroller extends Controller
      */
     public function index()
     {
-        $notes = notes::all();
-        return view('admin.note.index', compact('notes'));
+        $notes = Notes::where('is_archived', false)->get();
+        $notes = Notes::orderBy('is_pinned', 'desc')->where('user_id', Auth::id())->get();
+        return view('admin.note.index', compact('notes'))->with('isArchivedView', false);
     }
 
     /**

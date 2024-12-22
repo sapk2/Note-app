@@ -2,7 +2,7 @@
 
 @section('user-content')
 <div class="text-white">
-    <h1 class="mt-4 p-4 mr-3 text-2xl flex border border-blue-900 rounded-md hover:bg-blue-900 hover:shadow-md hover:border-blue-600 transition-all duration-300 ease-in-out">
+    <h1 class="mt-4 p-4 mr-3 text-2xl flex border border-blue-900 rounded-md hover:bg-dark-900 hover:shadow-md hover:border-blue-600 transition-all duration-300 ease-in-out">
         Dashboard
     </h1>
     <p>Welcome to your user panel! Here you can manage your notes, view shared notes, and access archived notes.</p>
@@ -30,7 +30,7 @@
                             <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
                           </svg>
                         </a>
-                        <a href="{{ route('users.noteshow', $item->id) }}" style="display:inline; color:yellow" class="inline-block px-4 py-2  text-white font-medium text-sm rounded-lg shadow  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <a href="{{ route('users.noteshow', $item->id) }}" style="display:inline; color:rgba(255, 255, 0, 0.884)  " class="inline-block px-4 py-2  text-white font-medium text-sm rounded-lg shadow  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                             <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                             <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clip-rule="evenodd" />
                           </svg>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\archivecontroller;
 use App\Http\Controllers\dashboardcontroller;
 use App\Http\Controllers\Notescontroller;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,9 @@ Route::get('note/{id}/edit',[Notescontroller::class,'edit'])->name('admin.note.e
 Route::post('note/{id}/update',[Notescontroller::class,'update'])->name('admin.note.update');
 Route::delete('note/{id}/delete',[Notescontroller::class,'delete'])->name('admin.note.delete');
 
+Route::get('notes/archived',[archivecontroller::class,'archivedNotes'])->name('admin.archives.archived');
+Route::get('notes/{id}/toggle-archive', [archivecontroller::class, 'togglearchive'])->name('admin.archive.toggleArchive');
+
 //user-management
 Route::get('/admin/user',[UserController::class,'index'])->name('admin.users.index');
 //Route::get('user-create',[UserController::class,'create'])->name('users.create');
@@ -32,6 +36,8 @@ Route::post('user/store',[UserController::class,'store'])->name('admin.users.sto
 Route::get('user/{id}/edit',[UserController::class,'edit'])->name('admin.users.edit');
 Route::post('user/{id}/update',[UserController::class,'update'])->name('admin.users.update');
 Route::get('user/{id}/delete',[UserController::class,'delete'])->name('admin.users.delete');
+
+
 
 
 //shared note 
@@ -51,7 +57,7 @@ Route::middleware('is_user')->group(function(){
     Route::get('/notes/create', [UserPanelController::class, 'mynotecreate'])->name('users.mynotes');
     Route::post('/notes/store', [UserPanelController::class, 'mystore'])->name('users.mystore');
     Route::get('/notes/edit/{id}', [UserPanelController::class, 'mynoteedit'])->name('users.noteedit');
-    Route::put('/notes/update/{id}', [UserPanelController::class, 'mynoteupdate'])->name('users.notesupdate');
+    Route::post('/notes/update/{id}', [UserPanelController::class, 'mynoteupdate'])->name('users.notesupdate');
     Route::delete('/notes/delete/{id}', [UserPanelController::class, 'mynotedelete'])->name('users.notesdelete');
     Route::get('/notes/{id}/show', [UserPanelController::class, 'noteshow'])->name('users.noteshow');
 
