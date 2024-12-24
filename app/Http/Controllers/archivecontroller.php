@@ -10,10 +10,10 @@ class archivecontroller extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function archivedNotes()
+    public function index()
     {
         $archivednotes=notes::where('is_archived',true)->get();
-        return view('admin.archives.archived',compact('archivednotes'));
+        return view('admin.archives.index',compact('archivednotes'));
     }
 
 

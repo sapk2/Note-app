@@ -51,14 +51,14 @@
                     @enderror
                 </div>
                 
-                <div class="mb-4">
+              <!--  <div class="mb-4">
                     <label for="is_archived" class="flex items-center text-gray-500 dark:text-gray-400">
                         <input type="checkbox" name="is_archived" id="is_archived" value="1" class="mr-2"> Archived
                     </label>
                     @error('is_archived')
                         <div class="text-red-500 text-sm">{{ $message }}</div>
                     @enderror
-                </div>
+                </div>-->
             
                 <div class="mb-4">
                     <label for="is_pinned" class="flex items-center text-gray-500 dark:text-gray-400">

@@ -9,7 +9,7 @@
             <div class="my-5 text-right px-2">
                 <a href="{{ route('admin.note.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-600">Add Note</a>
             </div>
-            
+            <a href="{{route('admin.archives.index')}}" class="hover:text-blue-300 text-white">Archive-notes</a></li>
             <div class="w-full text-white bg-gray-400 mt-4 ml-2 rounded-xl shadow-md">
                 <table class="display table table-bordered w-full" id="notestable">
                     <thead>
@@ -23,11 +23,12 @@
                     </thead>  
                     <tbody>
                         @foreach ($notes as $item)
-                        <tr class="text-center @if($item->is_pinned == 'pinned') bg-red-100 @endif">
+                        <tr class="text-center @if($item->is_pinned == 'pinned') bg-red-100  @endif">
                             <td class="border border-gray-600 p-2">{{ $loop->iteration }}</td>
                             <td class="border border-gray-600 p-2">{{ $item->user->name }}</td>
                             <td class="border border-gray-600 p-2">{{ $item->title }}</td>
                             <td class="border border-gray-600 p-2">{{ $item->content }}</td>
+
                             <td class="border border-gray-600 p-2">
                                 <a href="{{ route('admin.note.edit', $item->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition duration-600">Edit</a>
                                 <form action="{{ route('admin.note.delete', $item->id) }}" method="POST" style="display:inline;" onclick="return confirm('Are you sure to Delete?')">
@@ -35,11 +36,14 @@
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition duration-600" >Delete</button>
                                 </form>
+                                <a href="{{ route('admin.archives.toggleArchive', $item->id) }}" class="bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600">{{ $item->is_archived ? 'Unarchive' : 'Archive' }}</a>
+
                                 <!-- Display Pinned Badge -->
                                 @if($item->is_pinned == 'pinned')
                                     <span class="badge badge-info bg-blue-500 text-white px-2 py-1 rounded">Pinned</span>
                                 @endif
                             </td>
+                            
                         </tr>
                         @endforeach
                     </tbody>

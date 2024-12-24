@@ -16,7 +16,7 @@ Route::get('/', function () {
 
 
 Route::middleware('isadmin')->group(function () {
-     Route::get('/admin-dashboard', [dashboardcontroller::class,'dashboard'] )->name('admin.dashboard');
+    Route::get('/admin-dashboard', [dashboardcontroller::class,'dashboard'] )->name('admin.dashboard');
     
 // note
 Route::get('/admin/note',[Notescontroller::class,'index'])->name('admin.note.index');
@@ -26,8 +26,8 @@ Route::get('note/{id}/edit',[Notescontroller::class,'edit'])->name('admin.note.e
 Route::post('note/{id}/update',[Notescontroller::class,'update'])->name('admin.note.update');
 Route::delete('note/{id}/delete',[Notescontroller::class,'delete'])->name('admin.note.delete');
 
-Route::get('notes/archived',[archivecontroller::class,'archivedNotes'])->name('admin.archives.archived');
-Route::get('notes/{id}/toggle-archive', [archivecontroller::class, 'togglearchive'])->name('admin.archive.toggleArchive');
+Route::get('notes/archived',[archivecontroller::class,'index'])->name('admin.archives.index');
+Route::get('notes/{id}/toggle-archive', [archivecontroller::class, 'togglearchive'])->name('admin.archives.toggleArchive');
 
 //user-management
 Route::get('/admin/user',[UserController::class,'index'])->name('admin.users.index');
@@ -60,8 +60,7 @@ Route::middleware('is_user')->group(function(){
     Route::post('/notes/update/{id}', [UserPanelController::class, 'mynoteupdate'])->name('users.notesupdate');
     Route::delete('/notes/delete/{id}', [UserPanelController::class, 'mynotedelete'])->name('users.notesdelete');
     Route::get('/notes/{id}/show', [UserPanelController::class, 'noteshow'])->name('users.noteshow');
-
-    
+ 
 });
 
 require __DIR__.'/auth.php';

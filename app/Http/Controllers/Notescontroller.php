@@ -2,36 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\notes;
+use App\Models\Notes;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class notescontroller extends Controller
+class NotesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $notes = Notes::where('is_archived', false)->get();
-        $notes = Notes::orderBy('is_pinned', 'desc')->where('user_id', Auth::id())->get();
-        return view('admin.note.index', compact('notes'))->with('isArchivedView', false);
+        // Fetch notes that are not archived
+        $notes = Notes::where('is_archived', false)
+                      ->where('user_id', Auth::id())
+                      ->orderBy('is_pinned', 'desc')
+                      ->get();
+        
+        // Fetch archived notes
+        $archivednotes = Notes::where('is_archived', true)
+                              ->where('user_id', Auth::id())
+                              ->get();
+
+        return view('admin.note.index', compact('notes', 'archivednotes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function toggleArchive($id)
+    {
+        $notes = Notes::findOrFail($id);
+        $notes->is_archived = !$notes->is_archived; // Toggle the archive status
+        $notes->save();
+
+        $message = $notes->is_archived 
+            ? 'Note archived successfully!' 
+            : 'Note unarchived successfully!';
+        
+        return redirect()->route('admin.note.index')->with('success', $message);
+    }
+
     public function create()
     {
         $users = User::all();
-        $notes= notes::all();
-         return view('admin.note.create', compact('users','notes'));
+        return view('admin.note.create', compact('users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -42,19 +54,18 @@ class notescontroller extends Controller
             'is_archived' => 'boolean',
             'is_pinned' => 'boolean',
         ]);
-        $data = notes::create($data);
-        return redirect()->route('admin.note.index')->with('sucessfully created!!');
+
+        Notes::create($data);
+        return redirect()->route('admin.note.index')->with('success', 'Note created successfully!');
     }
 
-    
     public function edit(string $id)
     {
-        $users=User::all();
-        $notes = notes::findorfail($id);
-        return view('admin.note.edit', compact('notes','users'));
+        $users = User::all();
+        $notes = Notes::findOrFail($id);
+        return view('admin.note.edit', compact('notes', 'users'));
     }
 
-  
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
@@ -64,29 +75,22 @@ class notescontroller extends Controller
             'is_shared' => 'boolean',
             'is_archived' => 'boolean',
             'is_pinned' => 'boolean',
-            
         ]);
-       
-        
-        $notes = notes::findorfail($id);
+
+        $notes = Notes::findOrFail($id);
         $notes->update($data);
 
-        return redirect()->route('admin.note.index')->with('sucess');
+        return redirect()->route('admin.note.index')->with('success', 'Note updated successfully!');
     }
-    
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function delete(string $id)
-
     {
-        $notes = notes::find($id);
-        if (!$notes) {
-            // If not found, redirect with an error message
+        $note = Notes::find($id);
+        if (!$note) {
             return redirect()->route('admin.note.index')->with('error', 'Note not found!');
         }
-        $notes->delete();
-        return redirect()->route('admin.note.index')->with('success', 'Note successfully deleted!');
+
+        $note->delete();
+        return redirect()->route('admin.note.index')->with('success', 'Note deleted successfully!');
     }
 }

@@ -14,11 +14,11 @@ class dashboardcontroller extends Controller
      */
     public function dashboard()
     {
-        $totalnotes= notes::count();
-        $totalusers=User::count();
-        $totalshare= Note_shared::count();
+        $totalnotes = notes::count();
+        $totalusers = User::count();
+        $totalshare = Note_shared::count();
 
-        return view('admin.dashboard', compact('totalnotes', 'totalusers','totalshare'));
+        return view('admin.dashboard', compact('totalnotes', 'totalusers', 'totalshare'));
     }
 
     /**

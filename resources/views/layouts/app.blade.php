@@ -40,6 +40,7 @@
                 <ul class="hidden md:flex items-center space-x-6">
                   <li><a href="{{route('admin.dashboard')}}" class="hover:text-blue-300">Dashboard</a></li>
                   <li><a href="{{route('admin.note.index')}}" class="hover:text-blue-300">Notes</a></li>
+                  <li><a href="{{route('admin.archives.index')}}" class="hover:text-blue-300">Archive-notes</a></li>
                   <li><a href="{{route('admin.shared-notes.index')}}" class="hover:text-blue-300">Shared Notes</a></li>
                   <li><a href="{{route('admin.users.index')}}" class="hover:text-blue-300">Users</a></li>
                   <li>
@@ -72,6 +73,7 @@
                 <ul>
                     <li><a href="{{route('admin.dashboard')}}" class="hover:text-blue-300">Dashboard</a></li>
                   <li><a href="{{route('admin.note.index')}}" class="hover:text-blue-300">Notes</a></li>
+
                   <li><a href="{{route('admin.shared-notes.index')}}" class="hover:text-blue-300">Shared Notes</a></li>
                   <li><a href="{{route('admin.users.index')}}" class="hover:text-blue-300">Users</a></li>
                 </ul>
