@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Note;
+
 use App\Models\Note_shared;
 use App\Models\notes;
 use App\Models\User;
@@ -44,5 +44,19 @@ class shared_Notecontroller extends Controller
         $sharenote = Note_shared::findorfail($id);
         $sharenote->delete();
         return redirect()->back()->with('success', 'Note unshared successfully.');
+    }
+    public function share(Request $request){
+        $data = $request->validate([
+            'note_id' => 'required',
+            'user_id' => 'required',
+            'access_type' => 'required'
+        ]);
+        $share=new Note_shared();
+        $share->note_id = $request->note_id;
+        $share->user_id = $request->user_id;
+        $share->access_type = $request->access_type;
+        $share->save();
+        return redirect()->back()->with('success', 'Note unshared successfully.');
+        
     }
 }

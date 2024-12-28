@@ -12,17 +12,18 @@ class archivecontroller extends Controller
      */
     public function index()
     {
-        $archivednotes=notes::where('is_archived',true)->get();
-        return view('admin.archives.index',compact('archivednotes'));
+        $archivednotes = notes::where('is_archived', true)->get();
+
+        return view('admin.archives.index', compact('archivednotes'));
+
     }
 
 
     public function togglearchive(string $id)
     {
-        $archivednotes =notes::findorfail($id);
+        $archivednotes = notes::findorfail($id);
         $archivednotes->is_archived = !$archivednotes->is_archived;
         $archivednotes->save();
-        return redirect()->route('admin.note.index')->with('sucess','note archive status update');
+        return redirect()->route('admin.note.index')->with('sucess', 'note archive status update');
     }
-
 }

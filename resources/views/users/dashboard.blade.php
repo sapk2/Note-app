@@ -12,7 +12,10 @@
     <div class="w-full sm:w-full p-4 rounded-lg shadow-lg">
         <h1 class="text-white text-2xl font-semibold">Notes</h1>
         <hr class="border-t-2 border-red-500 mt-2">
-
+        <form action="{{ route('users.dashboard') }}" method="GET" class="mb-4">
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search notes..." class="w-30 p-2 rounded border-gray-800 focus:border-blue-500 focus:ring focus:ring-blue-200">
+            <button type="submit" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"> Search </button>
+        </form>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
             @forelse ($note as $item)
                 <div class="bg-gray-800 text-white rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
