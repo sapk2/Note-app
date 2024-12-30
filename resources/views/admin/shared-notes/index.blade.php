@@ -92,7 +92,7 @@
 </div>
 
 <!-- Modal -->
-<div id="shareModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+<div id="shareModal" style="display: none;" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
     <div class="bg-gray-500 rounded-lg p-6 w-1/3">
         <h2 class="text-xl font-bold mb-4">Share Note</h2>
         <form action="{{ route('admin.sharednotes.share') }}" method="POST">
@@ -129,11 +129,11 @@
 <script>
     function openModal(noteId) {
         document.getElementById('note_id').value = noteId;
-        document.getElementById('shareModal').classList.remove('hidden');
+        document.getElementById('shareModal').style.display = 'flex';
     }
 
     function closeModal() {
-        document.getElementById('shareModal').classList.add('hidden');
+        document.getElementById('shareModal').style.display = 'none';
     }
 </script>
 @endsection

@@ -11,26 +11,28 @@ class UserPanelController extends Controller
 {
     public function mynote(Request $request)
     {
-        #$note=notes::all();
-        $noteQuery = Notes::where('is_archived',false)->orderBy('is_pinned', 'desc')
-        ->where('user_id', Auth::id());
-        $archivednotes=notes::where('is_archived',true)->where('user_id',Auth::id())->get();
-    
-    if ($request->has('search') && $request->search != '') {
-        $noteQuery->where(function ($query) use ($request) {
-            $query->where('title', 'like', '%' . $request->search . '%')
-                  ->orWhere('content', 'like', '%' . $request->search . '%');
-        });
-    }
-    
-    $note = $noteQuery->get();
-    
-        return view('users.dashboard', compact('note','archivednotes'));
+        #$user=user::all();
+        $noteQuery = Notes::where('is_archived', false) ->where('user_id', Auth::id())->orderBy('is_pinned', 'desc')
+            ->where('user_id', Auth::id());
+        $archivednotes = notes::where('is_archived', true)->where('user_id', Auth::id())->get();
+
+        if ($request->has('search') && $request->search != '') {
+            $noteQuery->where(function ($query) use ($request) {
+                $query->where('title', 'like', '%' . $request->search . '%')
+                    ->orWhere('content', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        $note = $noteQuery->get();
+
+        return view('users.dashboard', compact('note', 'archivednotes'));
     }
 
     public function mynotecreate()
+
     {
-        return view('users.mynotes');
+        $users=User::where('id',Auth::id())->get();
+        return view('users.mynotes',compact('users'));
     }
 
     public function mystore(Request $request)
@@ -87,19 +89,17 @@ class UserPanelController extends Controller
 
         return redirect()->route('users.dashboard')->with('success', 'Note deleted successfully!');
     }
-    public function archiveindex(){
-        $archivednotes=notes::where ('is_archived',true)->get();
+    public function archiveindex()
+    {
+        $archivednotes = notes::where('is_archived', true)->get();
         return view('users.archives.index', compact('archivednotes'));
     }
     public function unarchive($id)
-{
-    $note = Notes::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+    {
+        $note = Notes::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
 
-    $note->update(['is_archived' => false]);
+        $note->update(['is_archived' => false]);
 
-    return redirect()->route('users.dashboard')->with('success', 'Note unarchived successfully!');
-}
-
-   
-
+        return redirect()->route('users.dashboard')->with('success', 'Note unarchived successfully!');
+    }
 }

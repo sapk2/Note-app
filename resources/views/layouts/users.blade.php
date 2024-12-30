@@ -41,7 +41,7 @@
                     <li class="nav-item"><a href="{{route('users.dashboard')}}" class="hover:text-blue-300">Dashboard</a></li>
                     <li class="nav-item"><a href="{{route('users.mynotes')}}" class="hover:text-blue-300">My Notes</a></li>
                     <li class="nav-item"><a href="{{route('users.archives.index')}}" class="hover:text-blue-300">Archive</a></li>
-                    <li class="nav-item"><a href="" class="hover:text-blue-300">Settings</a></li>    
+                    <li class="nav-item"><a href="{{route('users.shared.index')}}" class="hover:text-blue-300">Share</a></li>    
                   <li>
                       <form action="{{ route('logout') }}" method="POST" class="inline">
                           @csrf
@@ -73,7 +73,7 @@
                     <li class="nav-item"><a href="{{route('users.dashboard')}}" class="hover:text-blue-300">Dashboard</a></li>
                     <li class="nav-item"><a href="{{route('users.mynotes')}}" class="hover:text-blue-300">My Notes</a></li>
                     <li class="nav-item"><a href="{{route('users.archives.index')}}" class="hover:text-blue-300">Archive</a></li>
-                    <li class="nav-item"><a href="" class="hover:text-blue-300">Settings</a></li>
+                    <li class="nav-item"><a href="{{route('users.shared.index')}}" class="hover:text-blue-300">Share-Note</a></li>
     
                 </ul>
                 <!-- Logout Button -->

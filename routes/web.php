@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\shared_Notecontroller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPanelController;
+use App\Http\Controllers\UsesharenoteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -65,6 +66,13 @@ Route::middleware('is_user')->group(function () {
     Route::get('/notes/{id}/show', [UserPanelController::class, 'noteshow'])->name('users.noteshow');
     Route::get('/notes/archive', [UserPanelController::class, 'archiveindex'])->name('users.archives.index');
     Route::post('/notes/unarchive/{id}', [UserPanelController::class, 'unarchive'])->name('users.notes.unarchive');
+    
+    Route::get('/notes/shared', [UsesharenoteController::class, 'index'])->name('users.shared.index');
+    Route::post('/notes/shared', [UsesharenoteController::class, 'store'])->name('users.shared.store');
+    Route::get('/notes/shared/{id}/edit', [UsesharenoteController::class, 'edit'])->name('users.shared.edit');
+    Route::post('/notes/shared/{id}/update', [UsesharenoteController::class, 'update'])->name('users.shared.update');
+    Route::get('/notes/shared/{id}/delete', [UsesharenoteController::class, 'delete'])->name('users.shared.delete');
+    Route::post('/notes/shared/share',[UsesharenoteController::class,'share'])->name('users.shared.share');
 
 
 

@@ -16,9 +16,11 @@ class ShareNoteMail extends Mailable
      * Create a new message instance.
      */
     public $note;
-    public function __construct($note)
+    public $access;
+    public function __construct($note, $access)
     {
-        $this->note=$note;
+        $this->note = $note;
+        $this->access = $access;
         //
     }
 
@@ -38,7 +40,12 @@ class ShareNoteMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.share-notemail',
+            with: [
+                'note' => $this->note,
+                'access' => $this->access,
+                
+            ],
         );
     }
 

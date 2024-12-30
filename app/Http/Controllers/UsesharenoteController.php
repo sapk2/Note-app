@@ -7,17 +7,22 @@ use App\Models\Note_shared;
 use App\Models\notes;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
-class shared_Notecontroller extends Controller
+class UsesharenoteController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $user=User::all();
-
-        $sharenote = notes::where('is_shared',1)->get();
-        return view('admin.shared-notes.index', compact('sharenote','user'));
+        $user=User::where('id',Auth::id())->get();
+       
+        $sharenote = notes::where('is_shared',1)->where('user_id', Auth::id())->get();
+        return view('users.shared.index', compact('sharenote', 'user'));
     }
+
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -30,7 +35,12 @@ class shared_Notecontroller extends Controller
         Note_shared::create($data);
         return redirect()->with('sucessfully');
     }
-    public function update(Request $request, $id)
+
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'acess_type' => 'required',
@@ -41,7 +51,11 @@ class shared_Notecontroller extends Controller
         ]);
         return redirect()->back()->with('success', 'Access type updated successfully.');
     }
-    public  function delete($id)
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function delete(string $id)
     {
         $sharenote = Note_shared::findorfail($id);
         $sharenote->delete();
@@ -60,9 +74,8 @@ class shared_Notecontroller extends Controller
         $share->save();
         //send mail to user
         $note = notes::find($request->note_id);
-        Mail::to($request->email)->send(new ShareNoteMail($note->title, $request->access_type));
+        Mail::to($request->email)->send(new ShareNoteMail($note, $request->access_type));
         return redirect()->back()->with('success', 'Note shared and email sent successfully.');
         
     }
-    
 }
