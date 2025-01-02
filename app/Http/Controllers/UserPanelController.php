@@ -50,6 +50,7 @@ class UserPanelController extends Controller
         $data['user_id'] = Auth::id();
         Notes::create($data);
 
+
         return redirect()->route('users.dashboard')->with('success', 'Note created successfully!');
     }
     public function noteshow($id)
@@ -76,6 +77,7 @@ class UserPanelController extends Controller
             'is_archived' => 'boolean',
             'is_pinned' => 'boolean',
         ]);
+        $data['is_pinned']=$request->has('is_pinned')?true:false;
         $data['content'] = strip_tags($request->input('content'));
         $note->update($data);
 
@@ -91,11 +93,11 @@ class UserPanelController extends Controller
     }
     public function archiveindex()
     {
-        $archivednotes = notes::where('is_archived', true)->get();
+        $archivednotes = notes::where('is_archived', true)->where('user_id', Auth::id())->get();
         return view('users.archives.index', compact('archivednotes'));
     }
     public function unarchive($id)
-    {
+    { 
         $note = Notes::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
 
         $note->update(['is_archived' => false]);

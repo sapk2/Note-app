@@ -11,7 +11,10 @@
                 <h2 class="text-xl font-bold text-white mb-2">{{ $sharedNote->title }}</h2>
                 <p class="text-gray-300">Shared by: <span class="font-semibold">{{ $sharedNote->user->name }}</span></p>
                 <div class=" mt-4">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="openModal('{{ $sharedNote->id }}')">Share</button>
+                    <button class="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="openModal('{{ $sharedNote->id }}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd" d="M15.75 4.5a3 3 0 1 1 .825 2.066l-8.421 4.679a3.002 3.002 0 0 1 0 1.51l8.421 4.679a3 3 0 1 1-.729 1.31l-8.421-4.678a3 3 0 1 1 0-4.132l8.421-4.679a3 3 0 0 1-.096-.755Z" clip-rule="evenodd" />
+                      </svg>
+                      </button>
                 </div>
             </div>
             @endforeach

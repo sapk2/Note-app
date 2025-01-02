@@ -18,8 +18,8 @@
                     <span class="badge bg-secondary">{{ $note->is_archived ? 'Archived' : 'Active' }}</span>
                     <span class="badge bg-warning">{{ $note->is_pinned ? 'Pinned' : '' }}</span>
                 </div>
-                <div>
-                    <a href="{{ route('users.dashboard') }}" class="bg-gray-800 text-white px-4 py-2  rounded hover:bg-gray-900"> back</a>
+                <div class="d-flex mt-3">
+                    <a href="{{ route('users.dashboard') }}" class="bg-gray-800 text-white px-4 py-2 mt-2 rounded hover:bg-gray-900"> back</a>
                     
                 </div>
             </div>

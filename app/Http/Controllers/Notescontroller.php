@@ -12,15 +12,13 @@ class NotesController extends Controller
     public function index()
     {
         // Fetch notes that are not archived
-        $notes = Notes::where('is_archived', false)
-                      ->where('user_id', Auth::id())
-                      ->orderBy('is_pinned', 'desc')
-                      ->get();
-        
+        $notes = Notes::where('is_archived', false)->where('user_id', Auth::id()) ->orderBy('is_pinned', 'desc')->get();
+
         // Fetch archived notes
         $archivednotes = Notes::where('is_archived', true)
-                              ->where('user_id', Auth::id())
-                              ->get();
+            ->where('user_id', Auth::id())
+            ->get();
+        
 
         return view('admin.note.index', compact('notes', 'archivednotes'));
     }
@@ -31,10 +29,10 @@ class NotesController extends Controller
         $notes->is_archived = !$notes->is_archived; // Toggle the archive status
         $notes->save();
 
-        $message = $notes->is_archived 
-            ? 'Note archived successfully!' 
+        $message = $notes->is_archived
+            ? 'Note archived successfully!'
             : 'Note unarchived successfully!';
-        
+
         return redirect()->route('admin.note.index')->with('success', $message);
     }
 
