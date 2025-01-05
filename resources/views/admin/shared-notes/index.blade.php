@@ -59,7 +59,7 @@
         <h1 class="text-white text-2xl font-semibold">Shared Notes</h1>
         <hr class="border-t-3 border-red-500 mt-2">
         <div class="my-5 text-right px-2">
-            <div class="w-full text-white bg-gray-400 mt-4 ml-2 rounded-xl shadow-md">
+            <div class="w-full text-white bg-gray mt-4 ml-2 rounded-xl shadow-md">
                 <table class="display table-auto w-full" id="sharable">
                     <thead>
                         <tr class="text-center">
@@ -135,5 +135,6 @@
     function closeModal() {
         document.getElementById('shareModal').style.display = 'none';
     }
+    let table = new DataTable('#sharable');
 </script>
 @endsection

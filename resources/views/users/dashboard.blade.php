@@ -6,7 +6,7 @@
         Dashboard
     </h1>
     <p>Welcome {{ Auth::user()->name }}! Here you can manage your notes, view shared notes, and access archived notes.</p>
-
+</div>
 
 <div class="container flex flex-wrap gap-4 mb-3">
     <div class="w-full sm:w-full p-4 rounded-lg shadow-lg">
@@ -30,6 +30,7 @@
                     </div>
                     <p class="mt-2 text-gray-300">By: {{ $item->user->name }}</p>
                     <p class="mt-4 text-gray-400">{{ $item->content }}</p>
+                    <p class="mt-4 text-gray-400">{{ $item->created_at }}</p>
                     <div class="mt-4 flex  items-center">
                         <a href="{{ route('users.noteedit', $item->id) }}" style="display:inline; color:rgb(73, 75, 73) " class="inline-block px-4 py-2  text-white font-medium text-sm rounded-lg shadow  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                             <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
