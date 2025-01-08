@@ -34,8 +34,8 @@
             <div class="text-2xl font-bold text-white">{{$totalshare}}</div>
         </div>
     </div>
-     <!-- Pie Chart Card -->
-     <div class="flex flex-col shadow-md rounded-lg p-2  mt-4">
+    <!-- Pie Chart Card -->
+    <div class="flex flex-col shadow-md rounded-lg p-2  mt-4">
         <h2 class="text-xl font-semibold text-gray-700 mb-4">Overview</h2>
         <div class="relative w-md max-w-md mx-auto">
             <canvas id="overviewChart"></canvas>

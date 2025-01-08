@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note_shared;
 use App\Models\notes;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,6 +12,10 @@ class UserPanelController extends Controller
 {
     public function mynote(Request $request)
     {
+        $totalnotes = notes::where('user_id',Auth::id())->count();
+       # dd($totalnotes);
+        $totalshare = Note_shared::where('user_id',Auth::id())->count();
+        $totalarchived = notes::where('is_archived', true)->where('user_id', Auth::id())->count();
         #$user=user::all();
         $noteQuery = Notes::where('is_archived', false) ->where('user_id', Auth::id())->orderBy('is_pinned', 'desc')
             ->where('user_id', Auth::id());
@@ -25,7 +30,7 @@ class UserPanelController extends Controller
 
         $note = $noteQuery->get();
 
-        return view('users.dashboard', compact('note', 'archivednotes'));
+        return view('users.dashboard', compact('note', 'archivednotes' ,'totalnotes', 'totalshare', 'totalarchived'));
     }
 
     public function mynotecreate()
