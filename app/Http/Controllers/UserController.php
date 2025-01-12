@@ -33,7 +33,7 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::findorfail($id);
-        return view('users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
     public function update(Request $request, string $id)
@@ -41,12 +41,14 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
+            'role' => 'required',
 
         ]);
         $user = User::findorfail($id);
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
         ]);
         return redirect()->route('admin.users.index')->with('sucsessfully updated');
     }
@@ -56,7 +58,6 @@ class UserController extends Controller
 
         $user = User::findorfail($id);
         $user->delete();
-        return view('users.index');
+        return redirect()->route('admin.users.index')->with('sucsessfully updated');
     }
-    
 }

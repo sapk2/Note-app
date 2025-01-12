@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\notes;
 use Illuminate\Http\Request;
-
 class archivecontroller extends Controller
 {
     /**
@@ -12,6 +11,7 @@ class archivecontroller extends Controller
      */
     public function index()
     {
+      
         $archivednotes = notes::where('is_archived', true)->get();
 
         return view('admin.archives.index', compact('archivednotes'));

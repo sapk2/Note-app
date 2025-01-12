@@ -37,12 +37,7 @@
                                     <span class="ml-2 text-white">User</span>
                                 </label>
                             </div>
-                            <div class="mt-2">
-                                <label>
-                                    <input type="radio" name="role" value="guest" {{ old('role', $user->role) === 'guest' ? 'checked' : '' }}>
-                                    <span class="ml-2 text-white">Guest</span>
-                                </label>
-                            </div>
+                           
                         </div>
                         
                        

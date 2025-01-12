@@ -41,13 +41,14 @@
         </div>
         <div class="text-3xl font-bold text-white">{{ $totalshare }}</div>
     </div>
+
 </div>
 
   
 <div class="container flex flex-wrap gap-4 mb-2">
     <div class="w-full sm:w-full p-4 rounded-lg shadow-lg mt-4 bg-gradient-to-r from-blue-900 via-gray-800 to-blue-900" id="overviewContainer">
         <div class="flex justify-between items-center">
-            <h1 class="text-white">OVERVIEWs</h1>
+            <h1 class="text-white text-2xl font-semibold">Overviews</h1>
             <!-- Toggle Icon -->
             <i id="toggleOverviewIcon" class="fas fa-minus text-white cursor-pointer text-xl"></i>
         </div>
@@ -103,6 +104,9 @@
                         plugins: {
                             legend: {
                                 position: 'top',
+                                labels: {
+                                    color: '#FFFFFF',
+                                }
                             },
                         },
                     }
@@ -111,10 +115,10 @@
                 // Line Chart
                 const lineCtx = document.getElementById('overviewLineChart').getContext('2d');
                 const lineData = {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    labels: ['Total Notes', 'Total Archive','Total pinned'],
                     datasets: [{
                         label: 'Total Activity',
-                        data: [10, 20, 30, 40, 50, 60], // Replace with actual data
+                        data: @json([$totalnotes, $totalarchived,  $totalispinned]), // Replace with actual data
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 2,
@@ -136,7 +140,7 @@
                             x: {
                                 title: {
                                     display: true,
-                                    text: 'Months',
+                                    text: 'Notes',
                                     color: '#FFFFFF',
                                 },
                                 ticks: {

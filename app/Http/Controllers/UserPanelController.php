@@ -16,6 +16,7 @@ class UserPanelController extends Controller
        # dd($totalnotes);
         $totalshare = Note_shared::where('user_id',Auth::id())->count();
         $totalarchived = notes::where('is_archived', true)->where('user_id', Auth::id())->count();
+        $totalispinned = notes::where('is_pinned', true)->where('user_id', Auth::id())->count();
         #$user=user::all();
         $noteQuery = Notes::where('is_archived', false) ->where('user_id', Auth::id())->orderBy('is_pinned', 'desc')
             ->where('user_id', Auth::id());
@@ -30,7 +31,7 @@ class UserPanelController extends Controller
 
         $note = $noteQuery->get();
 
-        return view('users.dashboard', compact('note', 'archivednotes' ,'totalnotes', 'totalshare', 'totalarchived'));
+        return view('users.dashboard', compact('note', 'archivednotes' ,'totalnotes', 'totalshare', 'totalarchived','totalispinned'));
     }
 
     public function mynotecreate()

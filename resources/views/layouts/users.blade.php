@@ -34,7 +34,7 @@
                 <!-- Logo -->
                 <div class="flex items-center space-x-2 text-lg font-bold">
                     <img src="{{ asset('./assets/img/noteapp.png') }}" alt="NoteApp Logo"  width="32"  height="32"  class="inline-block"  >
-                    <a href="#" class="hover:text-blue-300">NoteApp</a>
+                    <a href="{{route('users.dashboard')}}" class="hover:text-blue-300">NoteApp</a>
                 </div>
 
                 <!-- Navigation Links (Desktop) -->
